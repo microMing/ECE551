@@ -1,5 +1,10 @@
+//cmd cntrl
+//for the ex11
+//group project
+//the following is rtl
 module cmd_cntrl(cmd, cmd_rdy, clr_cmd_rdy, in_transit, OK2Move, go, buzz, buzz_n, ID, ID_vld, clr_ID_vld, clk, rst_n);
 
+//input/output
 input cmd_rdy, OK2Move, ID_vld, clk, rst_n;
 input [7:0] cmd, ID;
 
@@ -7,15 +12,18 @@ output wire go, buzz, buzz_n;
 output reg clr_cmd_rdy, in_transit, clr_ID_vld;
 reg state, nxt_state;
 reg [5:0] dest_ID;
+//parameter
 localparam IDLE = 1'b0;
 localparam INTRANSIT = 1'b1;
 
-always @(clk, rst_n) begin
+//state
+always @(posedge clk, negedge rst_n) begin
 	if(!rst_n)
 		state <= IDLE;
 	else state <= nxt_state;
 end
 
+//combination assigment
 always @(state, cmd_rdy, cmd, ID_vld, ID) begin
 	nxt_state = IDLE;
 	clr_cmd_rdy = 0;
@@ -69,6 +77,7 @@ always @(state, cmd_rdy, cmd, ID_vld, ID) begin
 		endcase
 end
 
+//
 assign go = OK2Move & in_transit;
 assign buzz = !OK2Move & in_transit;
 assign buzz_n = ~buzz; 
