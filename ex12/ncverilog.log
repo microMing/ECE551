@@ -1,0 +1,66 @@
+ncverilog(64): 14.20-s008: (c) Copyright 1995-2015 Cadence Design Systems, Inc.
+TOOL:	ncverilog	14.20-s008: Started on Apr 25, 2017 at 10:42:15 CDT
+ncverilog
+	+access+wrc
+	A2D_intf.sv
+	cmd_cntrl.v
+	follower.v
+	motion_cntrl.sv
+	UART_rcv.sv
+	barcode.sv
+	dig_core.sv
+	SPI_mstr16.v
+	motor_cntrl.v
+	alu.v
+	+gui
+Recompiling... reason: file './motion_cntrl.sv' is newer than expected.
+	expected: Tue Apr 25 10:25:01 2017
+	actual:   Tue Apr 25 10:42:12 2017
+file: motion_cntrl.sv
+	module worklib.motion_cntrl:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.A2D_intf:sv <0x4d9e5f39>
+			streams:   2, words:   269
+		worklib.Follower:v <0x11ba4b6a>
+			streams:   4, words:  1284
+		worklib.SPI_mstr16:v <0x7505d2a9>
+			streams:  16, words:  6757
+		worklib.UART_rcv:sv <0x5142a809>
+			streams:  17, words:  8434
+		worklib.alu:v <0x77745216>
+			streams:  13, words:  4357
+		worklib.barcode:sv <0x04ebd24b>
+			streams:  19, words:  8596
+		worklib.cmd_cntrl:v <0x695d9f6c>
+			streams:  15, words:  5340
+		worklib.dig_core:sv <0x7f86b155>
+			streams:   1, words:   152
+		worklib.motion_cntrl:sv <0x7aa08c77>
+			streams:  71, words: 34835
+		worklib.motor_cntrl:v <0x54b1bdd7>
+			streams:  14, words:  5523
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		               Instances  Unique
+		Modules:              10      10
+		Registers:           116     116
+		Scalar wires:         57       -
+		Vectored wires:       36       -
+		Always blocks:        70      70
+		Cont. assignments:    37      48
+		Pseudo assignments:   17      17
+	Writing initial simulation snapshot: worklib.Follower:v
+ncsim: *W,WSEM2009: This SystemVerilog simulation was not run with the '-sem2009' option which provides 1800-2009 SystemVerilog simulation semantics. In future, '-sem2009' functionality will become the default for SystemVerilog environments. Until then, run your SystemVerilog  simulations using the '-sem2009' option and report any functional or performance issues to Cadence. To disable this warning, use the '-nowarn WSEM2009' command-line option. There is no impact to non-SystemVerilog environments.
+
+-------------------------------------
+Relinquished control to SimVision...
+ncsim> 
+ncsim> source /cae/apps/data/cadence-2015/installs/INCISIVE142/tools/inca/files/ncsimrc
+ncsim> ^C
+ncsim> exit
+TOOL:	ncverilog	14.20-s008: Exiting on Apr 25, 2017 at 10:42:36 CDT  (total: 00:00:21)
