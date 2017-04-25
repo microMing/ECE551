@@ -1,8 +1,11 @@
+//ex11 group homework
+//testbench of cmd_control
+//test the flow 
 module cmd_cntrl_tb();
-
+//declear
 reg cmd_rdy, OK2Move, ID_vld, clk, rst_n;
 reg [7:0] cmd, ID;
-
+//DUT instance
 cmd_cntrl iDUT(.cmd(cmd),
  .cmd_rdy(cmd_rdy),
  .clr_cmd_rdy(clr_cmd_rdy),
@@ -17,7 +20,7 @@ cmd_cntrl iDUT(.cmd(cmd),
  .clk(clk),
  .rst_n(rst_n));
 
-
+//main test begin
 initial begin
 rst_n = 0;
 clk = 0;
@@ -59,6 +62,14 @@ cmd = 8'b11000000;		//dest = 000000
 ID = 8'b00110110;
 #100
 
+//check buzz
+
+#100
+ID_vld = 0;
+cmd_rdy = 1;
+cmd = 8'b01110110;		//go, dest = 110110
+
+#60000
 
 $stop;
 
