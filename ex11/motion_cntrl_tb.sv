@@ -13,7 +13,7 @@
 
 
 
-module motion_contrl_tb();
+module motion_cntrl_tb();
 reg clk, rst_n;
 reg go; // tell the robot to move
 reg cnv_cmplt; // indicate A2D conversion is completed
@@ -45,20 +45,22 @@ A2D_res = 12'b0;
 
 ///////////////read IR_in(chnnl 1, then chnnl 0)////////////////////
 go = 1'b1;
+
+	
+#4 go = 1'b0;                      // assert go for a clk cycle
+#4
 if(IR_in_en == 1)
 	$display("IR_in is enabled");
 else 
     $display("IR_in failed to enable");
-	
-#4 go = 1'b0;                      // assert go for a clk cycle
-#556                               // The delay is to test PWM enable signal: Since the duty cycle is 0x8C, which is 140.
-                                   // Since the clk period is 4, the time need to count to 140 is 560.
+#564                               // The delay is to test PWM enable signal: Since the duty cycle is 0x8C, which is 140.
+                                   // Since the clk period is 4, the time need to count to 140 is 560.//should be 0-0x8c, so 141 cycles
 if(IR_in_en == 0)
 	$display("IR_in PWM is correct");
 else 
     $display("IR_in PWM is not correct");
 	
-#15824                             // wait for 4096 clk cycle to count to 4096 (timer is basically enabled when go is asserted. 
+#15820                             // wait for 4096 clk cycle to count to 4096 (timer is basically enabled when go is asserted. 
 				   // 4096*4 - 560 = 15824
 if(start_conv == 1'b1)
     $display("in_rht start successfully");
@@ -71,9 +73,10 @@ else
     $display("supposed to read chnnl 1, but reading %b now", chnnl);
 
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                                 // assert cnv_cmplt for a clk cycle, duummy read, so conv_cmplt last 2 clock cycles
 A2D_res = 12'h001;
-
+#4 cnv_cmplt = 1'b0;
+#4 //one cycle for alu operation
 #128                               // wait for 32 clk cycle to count to 32
 if(start_conv == 1'b1)
     $display("in_lft start successfully");
@@ -86,10 +89,11 @@ else
     $display("supposed to read chnnl 0, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h002; 
-
+#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
 ///////////////read IR_mid(chnnl 4, then chnnl 2)////////////////////
+#4
 
 #16384                             // wait for 4096 clk cycle to count to 4096
 
@@ -104,9 +108,10 @@ else
     $display("supposed to read chnnl 4, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h003;
-
+#4 cnv_cmplt = 1'b0;  
+#4
 #128                               // wait for 32 clk cycle to count to 32
 if(start_conv == 1'b1)
     $display("mid_lft start successfully");
@@ -119,13 +124,13 @@ else
     $display("supposed to read chnnl 2, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h004; 
-
+#4 cnv_cmplt = 1'b0;  
 
 
 ///////////////read IR_out(chnnl 3, then chnnl 7)////////////////////
-
+#4
 #16384                             // wait for 4096 clk cycle to count to 4096
 
 if(start_conv == 1'b1)
@@ -139,9 +144,10 @@ else
     $display("supposed to read chnnl 3, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4               // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h005;
-
+#4 cnv_cmplt = 1'b0;
+#4
 #128                               // wait for 32 clk cycle to count to 32
 if(start_conv == 1'b1)
     $display("out_lft start successfully");
@@ -154,16 +160,19 @@ else
     $display("supposed to read chnnl 7, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
-A2D_res = 12'h006; 
+#4                // assert cnv_cmplt for a clk cycle
+A2D_res = 12'h006;
+#4 cnv_cmplt = 1'b0;
 
+#4
+#28
 #8                                 // wait for 2 extra clk cycle (no reason, just wait)
 
 ////////////////////test if robot can stop correctly ////////////////////////////////////////
-if(lft == 10'b0 && rht == 10'b0)
-    $display("robot stops successfully");
-else 
-    $display("Error: robot are supposed to stop since go is deasserted");
+//if(lft == 10'b0 && rht == 10'b0)
+//    $display("robot stops successfully");
+//else 
+//    $display("Error: robot are supposed to stop since go is deasserted");
 	
 ///////////////////test another iteration////////////////////////////////////////////////////
 ///////////////read IR_in(chnnl 1, then chnnl 0)////////////////////
@@ -174,14 +183,14 @@ else
     $display("IR_in failed to enable");
 	
 #4 go = 1'b0;                      // assert go for a clk cycle
-#556                               // The delay is to test PWM enable signal: Since the duty cycle is 0x8C, which is 140.
+#568//#556                               // The delay is to test PWM enable signal: Since the duty cycle is 0x8C, which is 140.
                                    // Since the clk period is 4, the time need to count to 140 is 560.
 if(IR_in_en == 0)
 	$display("IR_in PWM is correct");
 else 
     $display("IR_in PWM is not correct");
 	
-#15824                             // wait for 4096 clk cycle to count to 4096 (timer is basically enabled when go is asserted. 																	    4096*4 - 560 = 15824)
+#15820 //#15824                             // wait for 4096 clk cycle to count to 4096 (timer is basically enabled when go is asserted. 																	    4096*4 - 560 = 15824)
 
 if(start_conv == 1'b1)
     $display("in_rht start successfully");
@@ -194,8 +203,11 @@ else
     $display("supposed to read chnnl 1, but reading %b now", chnnl);
 
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h001;
+#4 cnv_cmplt = 1'b0;
+
+#4
 
 #128                               // wait for 32 clk cycle to count to 32
 if(start_conv == 1'b1)
@@ -209,8 +221,10 @@ else
     $display("supposed to read chnnl 0, but reading %b now", chnnl);
 	
 cnv_cmplt = 1'b1;
-#4 cnv_cmplt = 1'b0;               // assert cnv_cmplt for a clk cycle
+#4                // assert cnv_cmplt for a clk cycle
 A2D_res = 12'h002; 
+#4 cnv_cmplt = 1'b0;
 
+$stop;
 end
 endmodule
