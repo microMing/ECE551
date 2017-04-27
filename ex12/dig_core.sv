@@ -35,8 +35,7 @@ module dig_core(clk,rst_n,cmd_rdy,cmd,clr_cmd_rdy,lft,rht,buzz,buzz_n,
   ////////////////////////////////////
   // Instantiate Motion Controller //
   //////////////////////////////////
-  wire strt_cnv = 1'b1;
-  motion_cntrl iMTN(.clk(clk),.rst_n(rst_n),.go(go),.strt_cnv(),.chnnl(chnnl),.cnv_cmplt(cnv_cmplt),
+  motion_cntrl iMTN(.clk(clk),.rst_n(rst_n),.go(go),.strt_cnv(strt_cnv),.chnnl(chnnl),.cnv_cmplt(cnv_cmplt),
                     .A2D_res(A2D_res),.IR_in_en(IR_in_en),.IR_mid_en(IR_mid_en),.IR_out_en(IR_out_en),
 					.LEDs(led),.lft(lft),.rht(rht));				
 					

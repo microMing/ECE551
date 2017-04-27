@@ -58,8 +58,8 @@ module Follower(clk,RST_n,led,a2d_SS_n,SCLK,MISO,MOSI,rev_rht,
   //////////////////////////////////////////////////////
   //  Instantiate 1/2 Duplex UART (cmds from BLE112) //
   ////////////////////////////////////////////////////
-  UART_rcv iCMD(.clk(clk),.rst_n(rst_n),.RX(RX),.rx_rdy(cmd_rdy),.rx_data(cmd),
-             .rx_rdy_clr(clr_cmd_rdy));
+  uart_rcv iCMD(.clk(clk),.rst_n(rst_n),.RX(RX),.rx_rdy(cmd_rdy),.rx_data(cmd),
+             .clr_rx_rdy(clr_cmd_rdy));
 		   		   
   ////////////////////////////////////
   //  Instantiate Motor Controller //
