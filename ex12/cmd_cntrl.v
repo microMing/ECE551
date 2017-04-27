@@ -61,6 +61,7 @@ always @(state, cmd_rdy, cmd, ID_vld, ID) begin
 			if(cmd_rdy&&cmd[7:6] == 2'b01) begin
 				//dest_ID = cmd[5:0];
 				nxt_state = INTRANSIT;
+				set_dest_ID = 1'b1     // updated by Yiming on 04/27 3:50pm
 				//in_transit = 1;
 			end
 
@@ -129,7 +130,7 @@ always @(posedge clk, negedge rst_n) begin
 	else begin
        if(buzz_en)
 	     buzz_cnt <= buzz_cnt+1'b1;
-	    if(buzz_cnt >= 14'd6250)
+	    if(buzz_cnt >= 14'd6250) // not sure whether it should be 6249 or 6250 (unpdated by Yiming on 04/27/2017)
           buzz<= 1'b1;
          else   
           buzz<= 1'b0;
