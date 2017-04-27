@@ -5,12 +5,12 @@
 //
 //
 //////////////////////////////////////////////////////
-module uart_rcv(rx_rdy, rx_data, clk, rst_n, rx_rdy_clr, RX);
+module uart_rcv(rx_rdy, rx_data, clk, rst_n, clr_rx_rdy, RX);
 
 ////////input and output declration/////////////
 output reg rx_rdy;
 output reg [7:0] rx_data;
-input clk, rst_n, rx_rdy_clr, RX;
+input clk, rst_n, clr_rx_rdy, RX;
 
 // start: when falling edge of RX is detected, start synchronize receiver
 // reading: start baud counting and bit counting
@@ -25,7 +25,9 @@ reg unsigned [11:0] baud_cnt;
 reg unsigned [3:0] bit_cnt;
 typedef enum reg[1:0] {IDLE, RECEIVE, SHIFT} state_t;
 state_t crnt_state, nxt_state;
- 
+
+//for the final demo
+wire  rx_rdy_clr = clr_rx_rdy;
  
 always@(posedge clk, negedge rst_n) begin
 	if(!rst_n)
