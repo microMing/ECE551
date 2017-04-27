@@ -57,7 +57,7 @@ reg clr_enable_pwm;
 wire pwm_check;
 wire in, mid, out;
 
-typedef enum logic[4:0] {idle, start, timer_4096, A2D_start, dummy_A2D, calculate, timer_32, A2D_start_2nd, dummy_A2D_2nd, calculate_2nd, PI_control_Intgrl, PI_control_Icomp, PI_control_Pcomp, PI_control_Accum_1, PI_control_rht_reg, PI_control_Accum_2, PI_control_lft_reg} t_state;
+typedef enum logic[4:0] {idle, start, timer_4096, A2D_start, dummy_A2D_wait_32, dummy_A2D, calculate, timer_32, A2D_start_2nd, dummy_A2D_2nd_wait_32, dummy_A2D_2nd, calculate_2nd, PI_control_Intgrl, PI_control_Icomp, PI_control_Pcomp, PI_control_Accum_1, PI_control_rht_reg, PI_control_Accum_2, PI_control_lft_reg} t_state;
 t_state cur_state, next_state;
 
 //alu connection
@@ -86,7 +86,10 @@ reg [11:0] lft_reg;
 reg [11:0] A2D_res_reg;//because we have dummp read/write, determin when to read A2D_res into register
 reg [2:0] IR_sel; 
 reg strt_cnv;
-
+//
+reg start_adc_reg;
+reg set_start_adc_reg;
+reg clr_start_adc_reg;
 
 //input/output declear
 assign chnnl = channel;
@@ -125,6 +128,8 @@ update_IR_sel = 1'b0;
 next_state = cur_state;
 set_enable_pwm = 1'b0;
 clr_enable_pwm = 1'b0;
+set_start_adc_reg = 1'b0;
+clr_start_adc_reg = 1'b0;
   begin
      case(cur_state)
        idle: begin
@@ -147,17 +152,34 @@ clr_enable_pwm = 1'b0;
                         next_state = timer_4096;
                    end
        A2D_start: begin
-                     if(!cnv_cmplt)
+                     if(!cnv_cmplt) begin
                         next_state = A2D_start;
-                     else begin
-                        next_state = dummy_A2D;
-                        set_start_conv = 1'b1;
+					    set_start_adc_reg = 1'b1;
+						end
+                     else if(start_adc_reg) begin
+                        next_state = dummy_A2D_wait_32;
+						clr_start_adc_reg = 1'b1;
                      end  
                   end
+	   dummy_A2D_wait_32: begin
+	                 //if (!cnv_cmplt) begin
+	                   enable_timer_32 = 1'b1;
+					 //end
+                     if(timer == 12'd31) begin
+                        next_state = dummy_A2D;
+						set_start_conv = 1'b1;
+						end
+                     else begin
+                        next_state = dummy_A2D_wait_32;
+                     end  
+                  end		  
        dummy_A2D: begin
-                    if(!cnv_cmplt)
+                    if(!cnv_cmplt) begin
                        next_state = dummy_A2D;
-                    else begin
+					   set_start_adc_reg = 1'b1;
+					end
+                    else if(start_adc_reg) begin
+					   clr_start_adc_reg = 1'b1;
                        next_state = calculate;
                        latch_A2D_res = 1'b1;
                        set_src1sel = 1'b1;
@@ -180,7 +202,9 @@ clr_enable_pwm = 1'b0;
                    next_state = timer_32;
                 end
        timer_32: begin
+	               //if (!cnv_cmplt) begin
                    enable_timer_32 = 1'b1;
+				   //end
                    if(timer == 12'd31) begin
                         next_state = A2D_start_2nd;
                         set_start_conv = 1'b1;
@@ -189,17 +213,34 @@ clr_enable_pwm = 1'b0;
                       next_state = timer_32;
                  end
         A2D_start_2nd: begin
-                    if(!cnv_cmplt)
-                      next_state = A2D_start_2nd;
-                    else begin
-                         next_state = dummy_A2D_2nd;
-                         set_start_conv = 1'b1;
+                    if(!cnv_cmplt) begin
+					     set_start_adc_reg = 1'b1; 
+                         next_state = A2D_start_2nd;
+					  end
+                    else if(start_adc_reg) begin
+                         next_state = dummy_A2D_2nd_wait_32;
+						 clr_start_adc_reg = 1'b1;
                        end
                  end
-       dummy_A2D_2nd: begin
-                     if(!cnv_cmplt)
-                         next_state = dummy_A2D_2nd;
+	    dummy_A2D_2nd_wait_32: begin
+		             //if (!cnv_cmplt) begin
+	                 enable_timer_32 = 1'b1;
+					 //end
+                     if(timer == 12'd31) begin
+                        next_state = dummy_A2D_2nd;
+						set_start_conv = 1'b1;
+						end
                      else begin
+                        next_state = dummy_A2D_2nd_wait_32;
+                     end  
+                  end	
+       dummy_A2D_2nd: begin
+                     if(!cnv_cmplt) begin
+					     set_start_adc_reg = 1'b1;
+                         next_state = dummy_A2D_2nd;
+						 end
+                     else if(start_adc_reg) begin
+					     clr_start_adc_reg = 1'b1;
                          clr_enable_pwm = 1'b1;
                          next_state = calculate_2nd;
                          latch_A2D_res = 1'b1;
@@ -330,6 +371,15 @@ clr_enable_pwm = 1'b0;
      endcase
   end
 end
+
+//start adc, must wait the previous cmplt becomes 1'b0 and then check it's own cmplt
+always@(posedge clk, negedge rst_n)
+ if(!rst_n)
+   start_adc_reg <= 1'b0;
+ else if(set_start_adc_reg)
+   start_adc_reg <= 1'b1;
+ else if(clr_start_adc_reg)
+   start_adc_reg <= 1'b0;
 
 always@(posedge clk, negedge rst_n)
  if(!rst_n)
