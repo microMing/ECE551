@@ -61,7 +61,7 @@ always @(state, cmd_rdy, cmd, ID_vld, ID) begin
 			if(cmd_rdy&&cmd[7:6] == 2'b01) begin
 				//dest_ID = cmd[5:0];
 				nxt_state = INTRANSIT;
-				set_dest_ID = 1'b1     // updated by Yiming on 04/27 3:50pm
+				set_dest_ID = 1'b1;     // updated by Yiming on 04/27 3:50pm
 				//in_transit = 1;
 			end
 
