@@ -17,7 +17,7 @@ module ADC128S(clk,rst_n,SS_n,SCLK,MISO,MOSI);
   
   output MISO;			// serial data out to master
   
-  reg [11:0] analog_mem[0:7];	// holds representation of analog data for CH0 - CH7 for 8192 sets.
+  reg [11:0] analog_mem[0:5000];	// holds representation of analog data for CH0 - CH7 for 8192 sets.
   
   wire [15:0] A2D_data,cmd;
   wire rdy_rise;
