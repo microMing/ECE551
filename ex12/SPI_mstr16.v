@@ -32,6 +32,7 @@ reg [15:0] MOSI_shifter;
 reg [15:0] MISO_shifter;
 wire load;
 wire shift;
+reg [1:0] shift_delay;
 wire MOSI;
 reg [3:0] shifter_counter;
 reg done;
@@ -112,7 +113,7 @@ always@(posedge clk, negedge rst_n) begin
  else if(load) begin
   MOSI_shifter <= cmd;
  end
- else if(shift) //shifter left
+ else if(shift_delay[1]) //shifter left
   MOSI_shifter <= {MOSI_shifter[14:0], 1'b0};
 end
 
@@ -120,6 +121,16 @@ assign MOSI = MOSI_shifter[15];
 
 assign load = (state == back_porch_start);
 assign shift = ((state == transmitting)&&(SCLK_counter == 5'b11111));
+
+always@(posedge clk, negedge rst_n) begin
+ if(~rst_n) begin
+  shift_delay <= 2'b0;
+ end
+ else begin
+  shift_delay[0] <= shift;
+  shift_delay[1] <= shift_delay[0];  
+ end
+end
 
 always@(posedge clk, negedge rst_n) begin
  if(~rst_n) begin
