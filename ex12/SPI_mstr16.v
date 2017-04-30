@@ -113,24 +113,25 @@ always@(posedge clk, negedge rst_n) begin
  else if(load) begin
   MOSI_shifter <= cmd;
  end
- else if(shift_delay[1]) //shifter left
+// else if(shift_delay[1]) //shifter left
+ else if(shift) //shifter left
   MOSI_shifter <= {MOSI_shifter[14:0], 1'b0};
 end
 
 assign MOSI = MOSI_shifter[15];
 
 assign load = (state == back_porch_start);
-assign shift = ((state == transmitting)&&(SCLK_counter == 5'b11111));
+assign shift = ((state == transmitting)&&(SCLK_counter == 5'h12));
 
-always@(posedge clk, negedge rst_n) begin
- if(~rst_n) begin
-  shift_delay <= 2'b0;
- end
- else begin
-  shift_delay[0] <= shift;
-  shift_delay[1] <= shift_delay[0];  
- end
-end
+//always@(posedge clk, negedge rst_n) begin
+// if(~rst_n) begin
+//  shift_delay <= 2'b0;
+// end
+// else begin
+//  shift_delay[0] <= shift;
+//  shift_delay[1] <= shift_delay[0];  
+// end
+//end
 
 always@(posedge clk, negedge rst_n) begin
  if(~rst_n) begin
