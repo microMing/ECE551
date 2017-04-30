@@ -296,9 +296,9 @@ clr_start_adc_reg = 1'b0;
                       set_multiply = 1'b1;
                  end
         PI_control_Icomp: begin //x 2cycles
-                      set_dst_Icomp = 1'b1;
                       enable_timer_2 = 1'b1;
                       if(timer==12'd1) begin
+					     set_dst_Icomp = 1'b1;
                          next_state = PI_control_Pcomp;
                          set_src1sel = 1'b1;
                          set_src0sel = 1'b1;
@@ -316,9 +316,9 @@ clr_start_adc_reg = 1'b0;
                       end
                  end
        PI_control_Pcomp: begin //x 2cycles
-                   set_dst_Pcomp = 1'b1;
                    enable_timer_2 = 1'b1;
                      if(timer==12'd1) begin
+					     set_dst_Pcomp = 1'b1;
                          next_state = PI_control_Accum_1;
                          set_src1sel = 1'b1;
                          set_src0sel = 1'b1;
