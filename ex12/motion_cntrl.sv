@@ -618,7 +618,8 @@ if(!rst_n)
    Fwd <= 12'h0;
 else if(~go)
    Fwd <= 12'b0;
-else if(set_dst_Intgrl & ~&Fwd[10:8])
+//else if(set_dst_Intgrl & ~&Fwd[10:8])
+else if(set_dst_left_reg & ~&Fwd[10:8])
    Fwd <= Fwd+ 1'b1;
 
 endmodule
