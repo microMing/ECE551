@@ -13,7 +13,6 @@
 ####################################################################
 #$Pterm = 0x37e0;
 #$Iterm = 0x380;
-#for this project
 $Pterm = 0x3680;
 $Iterm = 0x500;
 #########################################################################
@@ -54,13 +53,27 @@ for ($calcs=0; $calcs<($set_cntr+1)/6; $calcs++) {
   printf SUMMARY "%d ",$calcs+1;
   $base = $calcs*6;
   $accum = 0;
+    printf DETAILED "Current Base is: %3x\n", $base;
   $accum+=$a2d[$base+0][1];
+    printf DETAILED "channel 1 result is: %3x, address base is:%3x\n", $accum, $base+0;
   $accum-=$a2d[$base+1][0];
+    printf DETAILED "channel 0 result is: %3x, address base is:%3x\n", $accum, $base+1;
   $accum+=2*$a2d[$base+2][4];
+    printf DETAILED "channel 4 result is: %3x, address base is:%3x\n", $accum, $base+2;
   $accum-=2*$a2d[$base+3][2];
+    printf DETAILED "channel 2 result is: %3x, address base is:%3x\n", $accum, $base+3;
   $accum+=4*$a2d[$base+4][3];
+    printf DETAILED "channel 3 result is: %3x, address base is:%3x\n", $accum, $base+4;
   $accum-=4*$a2d[$base+5][7];
+    printf DETAILED "channel 7 result is: %3x, address base is:%3x\n", $accum, $base+5;
   $error = saturate($accum);
+
+
+
+
+
+
+
   printf "  The Error function for calc %d is %3x\n",$calc+1,$error;
   printf DETAILED "  The Error function for calc %d is %3x\n",$calc+1,$error;
   if ($int_dec==3) {
@@ -90,6 +103,7 @@ for ($calcs=0; $calcs<($set_cntr+1)/6; $calcs++) {
   printf "  Icomp = %3x\n",$Icomp;
   printf DETAILED "  Icomp = %3x\n",$Icomp;
   $Pcomp = int($error*$Pterm/4096);
+  printf DETAILED "  Pcomp before sat is: = %3x, inputs are %3x, and %3x\n",$Pcomp, $error, $Pterm; 
   $Pcomp = mult_sat($Pcomp);
   printf "  Pcomp = %3x\n",$Pcomp;
   printf DETAILED "  Pcomp = %3x\n",$Pcomp;  
