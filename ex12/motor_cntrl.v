@@ -24,7 +24,7 @@ always@(posedge clk, negedge rst_n)
       left<= 11'b0;
       right<= 11'b0;
      end
-    else if(cnt == 10'b11_1111_1111) begin
+    else if(cnt == 10'b11_1111_1110) begin
       left<= lft;
       right<=rht;
      end
@@ -55,7 +55,7 @@ always@(posedge clk, negedge rst_n)
 //reg fwd_lft, rev_lft, fwd_rht, rev_rht;
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
-	fwd_lft <= 1'b0;
+	fwd_lft <= 1'b1;
   else if (all_zero_left)
     fwd_lft <= 1'b1;
   else if (!pos_left)
@@ -70,7 +70,7 @@ always@(posedge clk, negedge rst_n)
 
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
-	rev_lft <= 1'b0;
+	rev_lft <= 1'b1;
   else if(all_zero_left)
     rev_lft <= 1'b1;
   else if(pos_left)
@@ -84,7 +84,7 @@ always@(posedge clk, negedge rst_n)
 
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
-	fwd_rht <= 1'b0;
+	fwd_rht <= 1'b1;
   else if(all_zero_right)
     fwd_rht <= 1'b1;
   else if(!pos_right)
@@ -98,7 +98,7 @@ always@(posedge clk, negedge rst_n)
 
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
-	rev_rht <= 1'b0;
+	rev_rht <= 1'b1;
   else if(all_zero_right)
     rev_rht <= 1'b1;
   else if(pos_right)
@@ -111,3 +111,4 @@ always@(posedge clk, negedge rst_n)
         rev_rht <= rev_rht;
 
 endmodule 
+
