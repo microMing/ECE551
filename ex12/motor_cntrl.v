@@ -56,9 +56,13 @@ always@(posedge clk, negedge rst_n)
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
 	fwd_lft <= 1'b0;
+  else if (all_zero_left)
+    fwd_lft <= 1'b1;
+  else if (!pos_left)
+    fwd_lft <= 1'b0;
   else if(cnt == 10'b11_1111_1111)
 	fwd_lft <= 1'b1;
-  else if ((!all_zero_left)&(pos_left)&(cnt == (duty_left)))
+  else if (cnt == (duty_left))
         fwd_lft <= 1'b0;
   else
         fwd_lft <= fwd_lft;
@@ -67,9 +71,13 @@ always@(posedge clk, negedge rst_n)
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
 	rev_lft <= 1'b0;
+  else if(all_zero_left)
+    rev_lft <= 1'b1;
+  else if(pos_left)
+    rev_lft <= 1'b0;
   else if(cnt == 10'b11_1111_1111)
 	rev_lft <= 1'b1;
-  else if ((!all_zero_left)&(!pos_left)&(cnt == (duty_left)))
+  else if (cnt == (duty_left))
         rev_lft <= 1'b0;
   else
         rev_lft <= rev_lft;
@@ -77,9 +85,13 @@ always@(posedge clk, negedge rst_n)
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
 	fwd_rht <= 1'b0;
+  else if(all_zero_right)
+    fwd_rht <= 1'b1;
+  else if(!pos_right)
+    fwd_rht <= 1'b0;
   else if(cnt == 10'b11_1111_1111)
 	fwd_rht <= 1'b1;
-  else if ((!all_zero_right)&(pos_right)&(cnt == (duty_right)))
+  else if (cnt == (duty_right))
         fwd_rht <= 1'b0;
   else
         fwd_rht <= fwd_rht;
@@ -87,9 +99,13 @@ always@(posedge clk, negedge rst_n)
 always@(posedge clk, negedge rst_n)
   if(~rst_n)
 	rev_rht <= 1'b0;
+  else if(all_zero_right)
+    rev_rht <= 1'b1;
+  else if(pos_right)
+    rev_rht <= 1'b0;
   else if(cnt == 10'b11_1111_1111)
 	rev_rht <= 1'b1;
-  else if ((!all_zero_right)&(!pos_right)&(cnt == (duty_right)))
+  else if (cnt == (duty_right))
         rev_rht <= 1'b0;
   else
         rev_rht <= rev_rht;
