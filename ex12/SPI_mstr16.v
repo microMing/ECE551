@@ -32,7 +32,7 @@ reg [15:0] MOSI_shifter;
 reg [15:0] MISO_shifter;
 wire load;
 wire shift;
-reg [1:0] shift_delay;
+//reg [1:0] shift_delay;
 wire MOSI;
 reg [3:0] shifter_counter;
 reg done;
