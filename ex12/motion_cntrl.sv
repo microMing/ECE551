@@ -275,9 +275,8 @@ clr_start_adc_reg = 1'b0;
                          clr_enable_pwm = 1'b1;
                          set_src0sel = 1'b1;
                          set_src1sel = 1'b1;
-                         src0sel_d = 3'b010;
-                         src1sel_d = 3'b001;
-                         set_mult4 = 1'b1;
+                         src1sel_d = 3'b011;
+                         src0sel_d = 3'b001;
                          set_saturate = 1'b1;
                        end
                         else begin
