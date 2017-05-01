@@ -7,7 +7,7 @@
 ##################################
 #Read in the verilog files first #
 ##################################
-read_file -format verilog { ./A2D_intf.sv \
+read_file -format sverilog { ./A2D_intf.sv \
 			    ./alu.v \
 			    ./barcode.sv \
                             ./cmd_cntrl.v \
