@@ -1,0 +1,79 @@
+##created by liang zhang
+##email: lzhang432@wisc.edu
+##for group project
+##ece551 project
+##line follower synthesis
+#suppose the dc shell and verilog files are in the same dir
+##################################
+#Read in the verilog files first #
+##################################
+read_file -format verilog { ./A2D_intf.sv \
+			    ./alu.v \
+			    ./barcode.sv \
+                            ./cmd_cntrl.v \
+                            ./dig_core.sv \
+                            ./motion_cntrl.sv \
+                            ./motor_cntrl.v \
+                            ./SPI_mstr16.v \
+                            ./uart_rcv.sv \
+                            ./follower.v }
+
+###################################
+# Set Current Design to Top level #
+##################################
+set current_design Follower
+######################
+# Set clock constrin #
+######################
+#400MHz
+create_clock -name "clk" -period 2.5 -waveform {0 1.25} {clk}
+set_dont_touch_network [find port clk]
+##################
+# Set input delay#
+##################
+set prim_input [remove_from_collection [all_inputs] [find port clk]]
+set_input_delay -clock clk 0.5 $prim_input
+############################
+# Set input drive strenght #
+############################
+set_driving_cell -lib_cell ND2D2BWP -from_pin A1 -library tcbn40lpbwptc $prim_input
+#######################
+# Adding output delay #
+#######################
+#output delay is 0.5ns, and output load 0.1pF
+set_output_delay -clock clk 0.5 [all_outputs]
+set_load 0.1 [all_outputs]
+
+##################################
+# Parasitic routing capacitances #
+##################################
+set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+
+#####################################
+# set wireload and transistion time #
+#####################################
+#max transition time is 0.15ns
+set_max_transition 0.15 [current_design]
+
+######################
+# Compile the design #
+#####################
+compile -map_effort medium
+
+#########################
+# set clock uncertainty #
+#########################
+set_clock_uncertainty 0.10 clk
+set_fix_hold clk
+compile -map_effort medium
+###########
+# report ##
+###########
+report_timing -delay min >> report.rpt
+report_timing -delay max >> report.rpt
+report_area -delay area  >> report.rpt
+ 
+###########################################
+# Write out resulting synthesized netlist #
+###########################################
+write -format verilog follower -output follower.vg
