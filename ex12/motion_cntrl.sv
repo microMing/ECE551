@@ -535,11 +535,15 @@ always@(posedge clk, negedge rst_n)
 always@(posedge clk, negedge rst_n)
  if(~rst_n)
     rht_reg<=12'b0;
+ else if(!go)
+    rht_reg<=12'b0;
  else if(set_dst_rht_reg)
     rht_reg<=dst[11:0];
 
 always@(posedge clk, negedge rst_n)
  if(~rst_n)
+    lft_reg<=12'b0;
+ else if(!go)
     lft_reg<=12'b0;
  else if(set_dst_left_reg)
     lft_reg<=dst[11:0];
