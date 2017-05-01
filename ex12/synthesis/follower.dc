@@ -21,7 +21,7 @@ read_file -format sverilog { ./A2D_intf.sv \
 ###################################
 # Set Current Design to Top level #
 ##################################
-set current_design Follower
+set current_design follower
 ######################
 # Set clock constrin #
 ######################
@@ -71,7 +71,7 @@ compile -map_effort medium
 ###########
 report_timing -delay min >> report.rpt
 report_timing -delay max >> report.rpt
-report_area -delay area  >> report.rpt
+report_area area  >> report.rpt
  
 ###########################################
 # Write out resulting synthesized netlist #
