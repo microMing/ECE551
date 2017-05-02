@@ -21,7 +21,7 @@ read_file -format sverilog { ./A2D_intf.sv \
 ###################################
 # Set Current Design to Top level #
 ##################################
-set current_design follower
+set current_design Follower
 ######################
 # Set clock constrin #
 ######################
@@ -58,22 +58,26 @@ set_max_transition 0.15 [current_design]
 ######################
 # Compile the design #
 #####################
-compile -map_effort medium
+compile_ultra
 
 #########################
 # set clock uncertainty #
 #########################
 set_clock_uncertainty 0.10 clk
 set_fix_hold clk
-compile -map_effort medium
+compile_ultra
+compile
+compile
+compile
 ###########
 # report ##
 ###########
-report_timing -delay min >> report.rpt
-report_timing -delay max >> report.rpt
-report_area area  >> report.rpt
+report_timing -delay min >> report1.rpt
+report_timing -delay max >> report1.rpt
+report_area >> report1.rpt
+report_power >> report1.rpt
  
 ###########################################
 # Write out resulting synthesized netlist #
 ###########################################
-write -format verilog follower -output follower.vg
+write -format verilog Follower -output follower.vg
