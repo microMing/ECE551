@@ -55,6 +55,11 @@ set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
 #max transition time is 0.15ns
 set_max_transition 0.15 [current_design]
 
+########################
+#flatten the structure##
+########################
+ungroup -all -flatten
+
 ######################
 # Compile the design #
 #####################
@@ -65,8 +70,7 @@ compile_ultra
 #########################
 set_clock_uncertainty 0.10 clk
 set_fix_hold clk
-compile_ultra
-compile
+
 compile
 compile
 ###########
