@@ -1,0 +1,942 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:29:41 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/error_reg[11]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/LEDs_reg[7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  A2D_intf           ZeroWireload          tcbn40lpbwptc
+  barcode            ZeroWireload          tcbn40lpbwptc
+  motor_cntrl        ZeroWireload          tcbn40lpbwptc
+  uart_rcv           ZeroWireload          tcbn40lpbwptc
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+  dig_core           ZeroWireload          tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/error_reg[11]/CP (DFCNQD1BWP)                0.00       0.00 r
+  iCORE/iMTN/error_reg[11]/Q (DFCNQD1BWP)                 0.13       0.13 f
+  iCORE/iMTN/LEDs_reg[7]/D (DFCNQD1BWP)                   0.00       0.13 f
+  data arrival time                                                  0.13
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.10       0.10
+  iCORE/iMTN/LEDs_reg[7]/CP (DFCNQD1BWP)                  0.00       0.10 r
+  library hold time                                       0.03       0.13
+  data required time                                                 0.13
+  --------------------------------------------------------------------------
+  data required time                                                 0.13
+  data arrival time                                                 -0.13
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:29:41 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/src0sel_reg[2]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/Icomp_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  A2D_intf           ZeroWireload          tcbn40lpbwptc
+  barcode            ZeroWireload          tcbn40lpbwptc
+  motor_cntrl        ZeroWireload          tcbn40lpbwptc
+  uart_rcv           ZeroWireload          tcbn40lpbwptc
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+  dig_core           ZeroWireload          tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/src0sel_reg[2]/CP (DFCND1BWP)                0.00       0.00 r
+  iCORE/iMTN/src0sel_reg[2]/Q (DFCND1BWP)                 0.12       0.12 r
+  iCORE/U1386/Z (OR2XD1BWP)                               0.04       0.17 r
+  iCORE/U1387/Z (OR2D4BWP)                                0.06       0.22 r
+  iCORE/U295/ZN (OAI22D1BWP)                              0.04       0.26 f
+  iCORE/U390/Z (AO221D1BWP)                               0.13       0.40 f
+  iCORE/U1557/Z (AO222D1BWP)                              0.15       0.54 f
+  iCORE/U138/ZN (CKND2BWP)                                0.03       0.57 r
+  iCORE/U43/Z (BUFFD12BWP)                                0.04       0.61 r
+  iCORE/U1755/ZN (MUX2ND0BWP)                             0.06       0.67 r
+  iCORE/U144/Z (AN2XD1BWP)                                0.06       0.73 r
+  iCORE/U489/Z (XOR3D1BWP)                                0.14       0.87 f
+  iCORE/U508/ZN (XNR3D1BWP)                               0.16       1.03 r
+  iCORE/U309/Z (XOR3D2BWP)                                0.13       1.17 r
+  iCORE/U385/ZN (CKND0BWP)                                0.02       1.19 f
+  iCORE/U1606/ZN (XNR3D1BWP)                              0.15       1.35 r
+  iCORE/U1521/ZN (OAI21D1BWP)                             0.04       1.38 f
+  iCORE/U101/ZN (CKND2D1BWP)                              0.04       1.42 r
+  iCORE/U30/ZN (CKND2D2BWP)                               0.03       1.45 f
+  iCORE/U83/ZN (OAI21D2BWP)                               0.03       1.48 r
+  iCORE/U1348/ZN (AOI21D2BWP)                             0.03       1.51 f
+  iCORE/U303/ZN (CKND2D2BWP)                              0.02       1.53 r
+  iCORE/U1395/ZN (CKND2D1BWP)                             0.02       1.56 f
+  iCORE/U1518/ZN (IND2D1BWP)                              0.03       1.58 r
+  iCORE/U1391/ZN (OAI21D1BWP)                             0.03       1.61 f
+  iCORE/U1527/ZN (IND2D1BWP)                              0.03       1.64 r
+  iCORE/U192/ZN (NR2D2BWP)                                0.02       1.66 f
+  iCORE/U1368/ZN (AOI31D2BWP)                             0.05       1.71 r
+  iCORE/U1371/ZN (IND3D2BWP)                              0.04       1.75 f
+  iCORE/U676/ZN (CKND1BWP)                                0.03       1.78 r
+  iCORE/U133/ZN (IND2D1BWP)                               0.03       1.81 f
+  iCORE/U1576/ZN (CKND1BWP)                               0.03       1.84 r
+  iCORE/U35/ZN (OAI211D2BWP)                              0.04       1.88 f
+  iCORE/U506/ZN (IOA21D2BWP)                              0.03       1.90 r
+  iCORE/U513/ZN (CKND2BWP)                                0.01       1.92 f
+  iCORE/U482/Z (OA21D1BWP)                                0.05       1.97 f
+  iCORE/U163/ZN (NR2XD1BWP)                               0.03       2.00 r
+  iCORE/U162/ZN (NR2D2BWP)                                0.01       2.01 f
+  iCORE/U1538/ZN (OAI21D1BWP)                             0.03       2.04 r
+  iCORE/U285/ZN (INVD1BWP)                                0.02       2.07 f
+  iCORE/U537/ZN (ND2D1BWP)                                0.03       2.09 r
+  iCORE/U490/ZN (CKND1BWP)                                0.02       2.11 f
+  iCORE/U70/ZN (IND3D4BWP)                                0.06       2.17 f
+  iCORE/U1024/Z (AO211D1BWP)                              0.10       2.28 f
+  iCORE/U1023/ZN (ND2D1BWP)                               0.03       2.31 r
+  iCORE/U200/ZN (INVD2BWP)                                0.02       2.33 f
+  iCORE/U1919/ZN (MUX2ND0BWP)                             0.04       2.36 r
+  iCORE/iMTN/Icomp_reg[0]/D (DFCNQD1BWP)                  0.00       2.36 r
+  data arrival time                                                  2.36
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.10       2.40
+  iCORE/iMTN/Icomp_reg[0]/CP (DFCNQD1BWP)                 0.00       2.40 r
+  library setup time                                     -0.04       2.36
+  data required time                                                 2.36
+  --------------------------------------------------------------------------
+  data required time                                                 2.36
+  data arrival time                                                 -2.36
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:29:41 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+Number of ports:                          181
+Number of nets:                          3095
+Number of cells:                         2933
+Number of combinational cells:           2564
+Number of sequential cells:               364
+Number of macros/black boxes:               0
+Number of buf/inv:                        721
+Number of references:                       9
+
+Combinational area:               3000.564061
+Buf/Inv area:                      488.980813
+Noncombinational area:            1540.677594
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  4541.241655
+Total area:                 undefined
+1
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:29:41 2017
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+Follower               TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwptc
+dig_core               ZeroWireload      tcbn40lpbwptc
+uart_rcv               ZeroWireload      tcbn40lpbwptc
+motor_cntrl            ZeroWireload      tcbn40lpbwptc
+barcode                ZeroWireload      tcbn40lpbwptc
+A2D_intf               ZeroWireload      tcbn40lpbwptc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 797.7838 uW   (99%)
+  Net Switching Power  =  11.5703 uW    (1%)
+                         ---------
+Total Dynamic Power    = 809.3541 uW  (100%)
+
+Cell Leakage Power     = 351.8349 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.7939        1.0892e-03          103.9838            0.7951  (  98.20%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  3.8808e-03        1.0481e-02          247.8467        1.4610e-02  (   1.80%)
+--------------------------------------------------------------------------------------------------
+Total              0.7978 mW     1.1570e-02 mW       351.8305 nW         0.8097 mW
+1
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:38:11 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/error_reg[5]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/LEDs_reg[1]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/error_reg[5]/CP (DFCNQD1BWP)                 0.00       0.00 r
+  iCORE/iMTN/error_reg[5]/Q (DFCNQD1BWP)                  0.13       0.13 f
+  iCORE/iMTN/LEDs_reg[1]/D (DFCNQD1BWP)                   0.00       0.13 f
+  data arrival time                                                  0.13
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.10       0.10
+  iCORE/iMTN/LEDs_reg[1]/CP (DFCNQD1BWP)                  0.00       0.10 r
+  library hold time                                       0.03       0.13
+  data required time                                                 0.13
+  --------------------------------------------------------------------------
+  data required time                                                 0.13
+  data arrival time                                                 -0.13
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:38:11 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/error_reg[11]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/accum_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/error_reg[11]/CP (DFCND1BWP)                 0.00       0.00 r
+  iCORE/iMTN/error_reg[11]/Q (DFCND1BWP)                  0.13       0.13 f
+  U7275/ZN (INVD1BWP)                                     0.04       0.17 r
+  U7340/Z (OR2D2BWP)                                      0.06       0.23 r
+  U7339/ZN (NR2D2BWP)                                     0.02       0.25 f
+  U7783/ZN (ND2D1BWP)                                     0.02       0.27 r
+  U7262/Z (CKBD2BWP)                                      0.05       0.32 r
+  U8157/Z (OA21D1BWP)                                     0.07       0.39 r
+  U7033/Z (AN2D8BWP)                                      0.06       0.45 r
+  U7034/Z (CKXOR2D2BWP)                                   0.09       0.54 f
+  U7134/ZN (ND2D1BWP)                                     0.03       0.58 r
+  U7643/Z (OR2D0BWP)                                      0.06       0.64 r
+  U7661/ZN (CKND1BWP)                                     0.03       0.66 f
+  U7278/Z (BUFFD6BWP)                                     0.06       0.72 f
+  U7003/ZN (MUX2ND2BWP)                                   0.09       0.81 r
+  U7002/ZN (CKND2D3BWP)                                   0.03       0.84 f
+  U7416/ZN (XNR3D0BWP)                                    0.16       1.00 r
+  U9192/ZN (XNR3D1BWP)                                    0.11       1.11 f
+  U7460/ZN (CKND1BWP)                                     0.03       1.14 r
+  U7805/Z (XOR3D2BWP)                                     0.15       1.29 f
+  U7307/ZN (INVD2BWP)                                     0.03       1.31 r
+  U7534/Z (XOR3D2BWP)                                     0.13       1.45 f
+  U7678/ZN (IND2D2BWP)                                    0.05       1.50 f
+  U7611/ZN (ND2D3BWP)                                     0.03       1.53 r
+  U7286/Z (OA211D4BWP)                                    0.07       1.61 r
+  U8925/ZN (AOI31D4BWP)                                   0.04       1.65 f
+  U7831/ZN (OAI31D4BWP)                                   0.06       1.71 r
+  U7282/ZN (CKND2D4BWP)                                   0.03       1.74 f
+  U9203/Z (OA21D1BWP)                                     0.06       1.81 f
+  U7315/ZN (ND2D2BWP)                                     0.03       1.83 r
+  U8952/ZN (IND2D4BWP)                                    0.03       1.86 f
+  U7809/ZN (ND2D4BWP)                                     0.02       1.88 r
+  U7817/ZN (IOA21D2BWP)                                   0.06       1.94 r
+  U7816/ZN (ND4D4BWP)                                     0.04       1.98 f
+  U7826/ZN (OAI211D4BWP)                                  0.05       2.03 r
+  U7038/ZN (INVD6BWP)                                     0.03       2.05 f
+  U9463/ZN (OAI21D4BWP)                                   0.02       2.08 r
+  U7350/Z (MUX2D4BWP)                                     0.07       2.15 r
+  U9001/ZN (INVD4BWP)                                     0.03       2.17 f
+  U9652/Z (AO221D1BWP)                                    0.13       2.31 f
+  U9462/ZN (CKND4BWP)                                     0.04       2.34 r
+  U9675/ZN (OAI22D1BWP)                                   0.04       2.38 f
+  iCORE/iMTN/accum_reg[6]/D (DFCNQD1BWP)                  0.00       2.38 f
+  data arrival time                                                  2.38
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.10       2.40
+  iCORE/iMTN/accum_reg[6]/CP (DFCNQD1BWP)                 0.00       2.40 r
+  library setup time                                     -0.02       2.38
+  data required time                                                 2.38
+  --------------------------------------------------------------------------
+  data required time                                                 2.38
+  data arrival time                                                 -2.38
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:38:11 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+Number of ports:                           27
+Number of nets:                          3153
+Number of cells:                         3119
+Number of combinational cells:           2755
+Number of sequential cells:               364
+Number of macros/black boxes:               0
+Number of buf/inv:                        895
+Number of references:                     228
+
+Combinational area:               3492.896460
+Buf/Inv area:                      698.896814
+Noncombinational area:            1555.142388
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  5048.038848
+Total area:                 undefined
+1
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 11:38:12 2017
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+Follower               TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwptc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 802.7942 uW   (97%)
+  Net Switching Power  =  23.8430 uW    (3%)
+                         ---------
+Total Dynamic Power    = 826.6371 uW  (100%)
+
+Cell Leakage Power     = 440.7875 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.7966        1.9091e-03          107.2787            0.7986  (  96.56%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  6.2126e-03        2.1934e-02          333.5045        2.8480e-02  (   3.44%)
+--------------------------------------------------------------------------------------------------
+Total              0.8028 mW     2.3843e-02 mW       440.7831 nW         0.8271 mW
+1
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 12:59:33 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCMD/q1_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCMD/q2_reg
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  iCMD/q1_reg/CP (DFSNQD1BWP)              0.00       0.00 r
+  iCMD/q1_reg/Q (DFSNQD1BWP)               0.13       0.13 f
+  iCMD/q2_reg/D (DFSNQD1BWP)               0.00       0.13 f
+  data arrival time                                   0.13
+
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  clock uncertainty                        0.10       0.10
+  iCMD/q2_reg/CP (DFSNQD1BWP)              0.00       0.10 r
+  library hold time                        0.02       0.12
+  data required time                                  0.12
+  -----------------------------------------------------------
+  data required time                                  0.12
+  data arrival time                                  -0.13
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 12:59:33 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/src1sel_reg[2]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/accum_reg[4]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/src1sel_reg[2]/CP (DFCNQD4BWP)               0.00       0.00 r
+  iCORE/iMTN/src1sel_reg[2]/Q (DFCNQD4BWP)                0.16       0.16 r
+  U8958/Z (OR3D8BWP)                                      0.07       0.24 r
+  U7963/ZN (OAI22D2BWP)                                   0.04       0.28 f
+  U7381/Z (AO221D1BWP)                                    0.14       0.41 f
+  U7279/ZN (CKND2BWP)                                     0.03       0.44 r
+  U7593/Z (CKXOR2D2BWP)                                   0.09       0.53 f
+  U7150/ZN (CKND2BWP)                                     0.03       0.56 r
+  U7658/ZN (NR2XD1BWP)                                    0.03       0.60 f
+  U7145/ZN (MUX2ND0BWP)                                   0.05       0.65 r
+  U6952/ZN (CKND2D2BWP)                                   0.05       0.70 f
+  U7128/ZN (CKND1BWP)                                     0.03       0.73 r
+  U7266/ZN (CKND2D2BWP)                                   0.03       0.75 f
+  U7127/ZN (ND2D2BWP)                                     0.03       0.78 r
+  U7665/ZN (XNR3D4BWP)                                    0.17       0.95 r
+  U7032/ZN (INVD4BWP)                                     0.02       0.96 f
+  U6936/ZN (OAI21D2BWP)                                   0.03       1.00 r
+  U8866/ZN (OAI21D2BWP)                                   0.04       1.04 f
+  U8794/ZN (IND2D4BWP)                                    0.06       1.10 f
+  U7879/ZN (INVD2BWP)                                     0.02       1.12 r
+  U7688/Z (OR3D4BWP)                                      0.05       1.16 r
+  U7214/ZN (IIND4D4BWP)                                   0.05       1.21 f
+  U7487/ZN (OAI211D2BWP)                                  0.04       1.25 r
+  U7425/ZN (CKND2D2BWP)                                   0.03       1.29 f
+  U9273/Z (AO211D4BWP)                                    0.11       1.40 f
+  U8871/ZN (ND2D2BWP)                                     0.03       1.43 r
+  U8018/ZN (ND2D2BWP)                                     0.02       1.45 f
+  U7198/ZN (CKND1BWP)                                     0.02       1.47 r
+  U8942/Z (AO211D4BWP)                                    0.05       1.52 r
+  U7590/ZN (ND2D8BWP)                                     0.03       1.54 f
+  U8891/ZN (OAI21D4BWP)                                   0.04       1.58 r
+  U7082/ZN (INVD4BWP)                                     0.02       1.60 f
+  U7484/ZN (OAI31D4BWP)                                   0.06       1.66 r
+  U6968/ZN (CKND2BWP)                                     0.02       1.69 f
+  U7805/ZN (ND2D2BWP)                                     0.02       1.71 r
+  U8838/ZN (CKND2BWP)                                     0.02       1.73 f
+  U8837/Z (OR2D4BWP)                                      0.05       1.78 f
+  U7493/ZN (CKND2D4BWP)                                   0.03       1.81 r
+  U9275/ZN (OAI211D4BWP)                                  0.04       1.85 f
+  U7079/ZN (INVD4BWP)                                     0.03       1.88 r
+  U7544/ZN (ND3D0BWP)                                     0.05       1.93 f
+  U7260/ZN (INR2XD2BWP)                                   0.08       2.01 f
+  U8847/ZN (CKND0BWP)                                     0.03       2.04 r
+  U8846/ZN (CKND2D2BWP)                                   0.03       2.07 f
+  U7510/ZN (ND2D2BWP)                                     0.02       2.09 r
+  U7623/ZN (ND2D3BWP)                                     0.03       2.12 f
+  U8955/ZN (INVD2BWP)                                     0.03       2.15 r
+  U7438/Z (BUFFD12BWP)                                    0.05       2.20 r
+  U8832/ZN (CKND2D1BWP)                                   0.03       2.23 f
+  U7207/ZN (ND3D2BWP)                                     0.03       2.26 r
+  U7206/ZN (INVD4BWP)                                     0.03       2.29 f
+  U7405/ZN (OAI22D0BWP)                                   0.07       2.36 r
+  iCORE/iMTN/accum_reg[4]/D (DFCNQD1BWP)                  0.00       2.36 r
+  data arrival time                                                  2.36
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.10       2.40
+  iCORE/iMTN/accum_reg[4]/CP (DFCNQD1BWP)                 0.00       2.40 r
+  library setup time                                     -0.04       2.36
+  data required time                                                 2.36
+  --------------------------------------------------------------------------
+  data required time                                                 2.36
+  data arrival time                                                 -2.36
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 12:59:33 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+Number of ports:                           27
+Number of nets:                          3122
+Number of cells:                         3036
+Number of combinational cells:           2672
+Number of sequential cells:               364
+Number of macros/black boxes:               0
+Number of buf/inv:                        760
+Number of references:                     201
+
+Combinational area:               3344.544061
+Buf/Inv area:                      614.754014
+Noncombinational area:            1611.237603
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  4955.781665
+Total area:                 undefined
+1
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 12:59:33 2017
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+Follower               TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwptc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 803.5416 uW   (98%)
+  Net Switching Power  =  19.6904 uW    (2%)
+                         ---------
+Total Dynamic Power    = 823.2319 uW  (100%)
+
+Cell Leakage Power     = 442.8405 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.7984        1.1977e-03          118.2605            0.7997  (  97.09%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  5.1371e-03        1.8493e-02          324.5756        2.3954e-02  (   2.91%)
+--------------------------------------------------------------------------------------------------
+Total              0.8035 mW     1.9690e-02 mW       442.8361 nW         0.8237 mW
+1
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 13:05:38 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/error_reg[11]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/LEDs_reg[7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/error_reg[11]/CP (DFCND1BWP)                 0.00       0.00 r
+  iCORE/iMTN/error_reg[11]/Q (DFCND1BWP)                  0.13       0.13 f
+  iCORE/iMTN/LEDs_reg[7]/D (DFCNQD1BWP)                   0.00       0.13 f
+  data arrival time                                                  0.13
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.10       0.10
+  iCORE/iMTN/LEDs_reg[7]/CP (DFCNQD1BWP)                  0.00       0.10 r
+  library hold time                                       0.02       0.12
+  data required time                                                 0.12
+  --------------------------------------------------------------------------
+  data required time                                                 0.12
+  data arrival time                                                 -0.13
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 13:05:38 2017
+****************************************
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iCORE/iMTN/src1sel_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCORE/iMTN/error_reg[9]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Follower           TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCORE/iMTN/src1sel_reg[0]/CP (DFCND2BWP)                0.00       0.00 r
+  iCORE/iMTN/src1sel_reg[0]/Q (DFCND2BWP)                 0.15       0.15 r
+  U9176/ZN (INVD3BWP)                                     0.02       0.17 f
+  U9392/ZN (NR3D1BWP)                                     0.06       0.23 r
+  U9342/Z (CKBD2BWP)                                      0.06       0.29 r
+  U9658/ZN (AOI22D2BWP)                                   0.03       0.32 f
+  U10909/Z (AN3D4BWP)                                     0.05       0.38 f
+  U9353/ZN (CKND3BWP)                                     0.03       0.41 r
+  U9200/ZN (INVD3BWP)                                     0.02       0.43 f
+  U10047/ZN (CKND2D0BWP)                                  0.03       0.47 r
+  U9752/ZN (ND2D1BWP)                                     0.04       0.51 f
+  U9198/ZN (NR2D2BWP)                                     0.03       0.54 r
+  U10890/ZN (INVD2BWP)                                    0.02       0.56 f
+  U9923/ZN (INVD4BWP)                                     0.03       0.60 r
+  U9921/ZN (INVD6BWP)                                     0.03       0.63 f
+  U9323/ZN (OAI221XD4BWP)                                 0.04       0.67 r
+  U9394/ZN (ND2D1BWP)                                     0.07       0.74 f
+  U9269/ZN (OAI21D4BWP)                                   0.05       0.79 r
+  U7897/ZN (XNR2D1BWP)                                    0.09       0.88 f
+  U9246/ZN (AOI32D2BWP)                                   0.06       0.94 r
+  U10953/ZN (IOA21D2BWP)                                  0.03       0.97 f
+  U9931/Z (XOR3D2BWP)                                     0.08       1.04 f
+  U9664/ZN (CKND2D2BWP)                                   0.03       1.08 r
+  U9396/ZN (CKND0BWP)                                     0.03       1.11 f
+  U11025/ZN (OAI31D2BWP)                                  0.06       1.17 r
+  U9204/ZN (CKND2D2BWP)                                   0.03       1.20 f
+  U9316/CON (FCICOND1BWP)                                 0.07       1.27 r
+  U9254/Z (CKBD4BWP)                                      0.06       1.34 r
+  U9187/ZN (OAI21D4BWP)                                   0.02       1.36 f
+  U11455/ZN (AOI211XD2BWP)                                0.06       1.42 r
+  U9552/ZN (OAI22D2BWP)                                   0.05       1.47 f
+  U9947/ZN (AOI21D4BWP)                                   0.04       1.51 r
+  U9748/ZN (OAI211D2BWP)                                  0.04       1.55 f
+  U10905/ZN (IND2D4BWP)                                   0.03       1.58 r
+  U10873/ZN (AOI31D4BWP)                                  0.03       1.61 f
+  U9180/ZN (ND2D4BWP)                                     0.03       1.64 r
+  U10860/Z (OA211D4BWP)                                   0.07       1.71 r
+  U9403/ZN (NR2XD2BWP)                                    0.02       1.73 f
+  U9666/ZN (AOI211XD2BWP)                                 0.06       1.79 r
+  U9621/ZN (INR2D2BWP)                                    0.03       1.82 f
+  U9753/ZN (OAI32D2BWP)                                   0.05       1.87 r
+  U11574/ZN (IAO22D4BWP)                                  0.08       1.95 r
+  U9245/ZN (NR2D4BWP)                                     0.02       1.97 f
+  U9942/ZN (AOI33XD4BWP)                                  0.05       2.01 r
+  U10926/ZN (CKND2D4BWP)                                  0.04       2.05 f
+  U10945/ZN (OAI211D4BWP)                                 0.03       2.08 r
+  U10864/ZN (ND3D4BWP)                                    0.04       2.12 f
+  U9420/Z (BUFFD12BWP)                                    0.06       2.18 f
+  U9417/Z (OA221D2BWP)                                    0.10       2.28 f
+  U10569/ZN (OAI22D0BWP)                                  0.08       2.36 r
+  iCORE/iMTN/error_reg[9]/D (DFCNQD1BWP)                  0.00       2.36 r
+  data arrival time                                                  2.36
+
+  clock clk (rise edge)                                   2.50       2.50
+  clock network delay (ideal)                             0.00       2.50
+  clock uncertainty                                      -0.10       2.40
+  iCORE/iMTN/error_reg[9]/CP (DFCNQD1BWP)                 0.00       2.40 r
+  library setup time                                     -0.04       2.36
+  data required time                                                 2.36
+  --------------------------------------------------------------------------
+  data required time                                                 2.36
+  data arrival time                                                 -2.36
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+ 
+****************************************
+Report : area
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 13:05:38 2017
+****************************************
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+Number of ports:                           27
+Number of nets:                          2859
+Number of cells:                         2840
+Number of combinational cells:           2476
+Number of sequential cells:               364
+Number of macros/black boxes:               0
+Number of buf/inv:                        687
+Number of references:                     248
+
+Combinational area:               3484.429244
+Buf/Inv area:                      621.280812
+Noncombinational area:            1551.967190
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  5036.396435
+Total area:                 undefined
+1
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : Follower
+Version: L-2016.03
+Date   : Tue May  2 13:05:38 2017
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+Follower               TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwptc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  = 803.2130 uW   (97%)
+  Net Switching Power  =  24.8492 uW    (3%)
+                         ---------
+Total Dynamic Power    = 828.0622 uW  (100%)
+
+Cell Leakage Power     = 434.4989 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           0.7965        1.6334e-03          106.1901            0.7982  (  96.35%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  6.7184e-03        2.3216e-02          328.3044        3.0262e-02  (   3.65%)
+--------------------------------------------------------------------------------------------------
+Total              0.8032 mW     2.4849e-02 mW       434.4945 nW         0.8285 mW
+1
